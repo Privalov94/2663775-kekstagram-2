@@ -1,24 +1,23 @@
-import { createPhotos } from './create-photos';
-
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const container = document.querySelector('.pictures');
 
-const fragment = document.createDocumentFragment();
-const dataMiniatures = createPhotos();
+const renderMiniatures = (photos) => {
+  const fragment = document.createDocumentFragment();
 
-dataMiniatures.forEach((photo) => {
-  const thumbnail = template.cloneNode(true);
-  const image = template.querySelector('.picture__img');
+  photos.forEach((photo) => {
+    const thumbnail = template.cloneNode(true);
+    const image = thumbnail.querySelector('.picture__img');
 
-  image.src = photo.url;
-  image.alt = photo.description;
+    image.src = photo.url;
+    image.alt = photo.description;
 
-  thumbnail.querySelector('.picture__comments').textContent = photo.comments.length;
-  thumbnail.querySelector('.picture__likes').textContent = photo.likes;
+    thumbnail.querySelector('.picture__comments').textContent = photo.comments.length;
+    thumbnail.querySelector('.picture__likes').textContent = photo.likes;
 
-  fragment.appendChild(thumbnail);
-});
+    fragment.appendChild(thumbnail);
+  });
 
-container.appendChild(fragment);
+  container.appendChild(fragment);
+};
 
-
+export {renderMiniatures};
