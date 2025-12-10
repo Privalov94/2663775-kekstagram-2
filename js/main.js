@@ -1,2 +1,7 @@
-import './create-photos';
-import './thumbails';
+import { createPhotos } from './create-photos';
+import { renderMiniatures } from './thumbails';
+
+const photos = createPhotos();
+renderMiniatures(photos);
+
+

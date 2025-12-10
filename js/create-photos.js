@@ -40,6 +40,4 @@ const createPhotos = () => {
   return photos;
 };
 
-createPhotos();
-
 export {createPhotos};
