@@ -73,6 +73,8 @@ uploadForm.addEventListener('submit', (evt) => {
   pristine.validate();
 });
 
+const resetvalidate = () => pristine.reset();
+
 hashtagInput.addEventListener('keydown', (evt) => {
   if(isEscapeKey(evt)) {
     evt.stopPropagation();
@@ -84,3 +86,5 @@ commentInput.addEventListener('keydown', (evt) => {
     evt.stopPropagation();
   }
 });
+
+export { resetvalidate };
