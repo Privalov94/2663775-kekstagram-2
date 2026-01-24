@@ -3,10 +3,12 @@ import { closePhotoEditor } from './upload-thumbail-form.js';
 import { setUserFormSubmit } from './form-validation.js';
 import { showTimeError } from './show-error-message.js';
 import { getData } from './api.js';
+import { initFilters } from './filter.js';
 
 getData()
   .then((images) => {
     renderMiniatures(images);
+    initFilters(images);
   })
   .catch(() => {
     showTimeError();
