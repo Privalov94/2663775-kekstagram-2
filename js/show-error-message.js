@@ -1,4 +1,13 @@
 const errorMessage = document.querySelector('#error').content.querySelector('.error');
+const errorTemplateData = document.querySelector('#data-error').content.querySelector('.data-error');
+
+const showTimeError = () => {
+  const errorMessageTime = errorTemplateData.cloneNode(true);
+  document.body.appendChild(errorMessageTime);
+  setTimeout(() => {
+    errorMessageTime.remove();
+  },5000);
+};
 
 const showErrorMessages = () => {
   const errorElement = errorMessage.cloneNode(true);
@@ -33,4 +42,4 @@ const showErrorMessages = () => {
   document.addEventListener('click', onOutsideClick);
 };
 
-export { showErrorMessages };
+export { showErrorMessages, showTimeError };
