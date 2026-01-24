@@ -1,6 +1,7 @@
 import { isEscapeKey } from './utils';
 import { showErrorMessages } from './show-error-message';
 import { showGoodMessages } from './show-good-message';
+import { sendData } from './api';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
@@ -92,25 +93,16 @@ const setUserFormSubmit = (onSuccess) => {
 
     const isValid = pristine.validate();
     if(isValid) {
-      const formData = new FormData(evt.target);
-
-      fetch(
-        'https://31.javascript.htmlacademy.pro/kekstagram',
-        {
-          method: 'POST',
-          body: formData,
-        },
-      ).then((response) => {
-        if (response.ok) {
+      sendData(new FormData(evt.target))
+        .then(() => {
           showGoodMessages();
           onSuccess();
-        } else {
+        })
+        .catch(() => {
           showErrorMessages();
-        }
-      }).catch(() => {
-        showErrorMessages();
-      });
+        });
     }
+    button.disabled = false;
   });
 };
 
